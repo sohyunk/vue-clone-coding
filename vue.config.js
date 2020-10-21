@@ -1,3 +1,4 @@
 module.exports = {
-  publicPath: '/vue-clone-coding/'
+  publicPath: '/vue-clone-coding/',
+  outputDir: 'docs'
 }
