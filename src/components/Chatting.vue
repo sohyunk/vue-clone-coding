@@ -9,12 +9,12 @@
                 </li>
             </ul>
             <ul>
-                <li v-for="m in myMsg.msg" :key="m.idx">
+                <li v-for="m in myMsg.msg" v-bind:value="m" :key="m.idx">
                     <div class="my">{{ m }}</div><br><br>
                 </li>
             </ul>
         </div>
-        <Send></Send>
+        <Send @add_msg="addList"></Send>
     </div>
 </template>
 
@@ -37,7 +37,13 @@ export default {
                 msg: ['안녕하세요!', '반갑습니다!']
             }
         }
-  }
+    },
+    methods: {
+        addList(msg) {
+            console.log(msg);
+            this.myMsg.msg.push(msg);
+        }
+    }
 }
 </script>
 
@@ -45,7 +51,8 @@ export default {
 #chat-range {
     background-color: rgba(168, 216, 235, 0.568);
     width: 320px;
-    height: 478px;
+    height: 438px;
+    font-size: 0.9em;
 }
 img {
   border-radius: 15%;
