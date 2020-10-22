@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '../components/Home.vue'
 import FriendInfo from '../components/FriendInfo.vue'
 import Chat from '../components/Chat.vue'
+import Chatting from '../components/Chatting.vue'
 import Hashtag from '../components/Hashtag.vue'
 import More from '../components/More.vue'
 
@@ -14,6 +15,7 @@ export default new Router({
         { path: '/', component: Home},
         { path: '/info', component: FriendInfo, name: 'FriendInfo', props: true},
         { path: '/chat', component: Chat},
+        { path: '/chatting', component: Chatting, name: 'Chatting', porps: true},
         { path: '/hashtag', component: Hashtag},
         { path: '/more', component: More},
     ]

@@ -13,7 +13,6 @@
 </template>
 
 <script>
-
 export default {
   name: "Header",
   props: {
@@ -26,7 +25,7 @@ export default {
   },
   methods: {
     listClick() {
-      this.$router.push({name: 'FriendInfo', params: {name: this.name, msg:this.message, img:this.profile}})
+      this.$router.push({name: 'FriendInfo', params: {name: this.name, msg:this.message, img:this.profile}});
     }
   } 
 };
