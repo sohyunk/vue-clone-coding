@@ -16,6 +16,7 @@
 export default {
   name: "Header",
   props: {
+    id: Number,
     name: String,
     profile: {
       type: String,
@@ -25,7 +26,7 @@ export default {
   },
   methods: {
     listClick() {
-      this.$router.push({name: 'FriendInfo', params: {name: this.name, msg:this.message, img:this.profile}});
+      this.$router.push({name: 'FriendInfo', params: {id: this.id, name: this.name, msg:this.message, img:this.profile}});
     }
   } 
 };

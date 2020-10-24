@@ -1,0 +1,31 @@
+{
+    "my": {
+        "id": 0,
+        "name": "도넛",
+        "profile": "donut.png",
+        "message": "먼치킨 찾아요"
+    },
+    "users": [
+        { 
+            "id": 1,
+            "name": "마카롱",
+            "profile": "macaron.png",
+            "message": ".",
+            "chat": false
+        },
+        { 
+            "id": 2,
+            "name": "컵케이크",
+            "profile": "cupcake.png",
+            "message": ".",
+            "chat": true
+        },
+        { 
+            "id": 3,
+            "name": "커피",
+            "profile": "coffee.png",
+            "message": "아.아 최고♡",
+            "chat": true
+        }
+    ]
+}

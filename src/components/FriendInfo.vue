@@ -10,7 +10,7 @@
       </div>
       <div id="info-btm">
         <ul>
-          <li><i class="fas fa-comment"></i><p>채팅 하기</p></li>
+          <li v-on:click="moveChat"><i class="fas fa-comment"></i><p>채팅 하기</p></li>
           <li><i class="far fa-edit"></i><p>프로필 편집</p></li>
         </ul>
       </div>
@@ -23,6 +23,9 @@ export default {
   methods: {
     close() {
       this.$router.push('/')
+    },
+    moveChat() {
+      this.$router.push({name: 'Chatting', params: {id: this.$route.params.id, name: this.$route.params.name, profile: this.$route.params.img}});
     }
   } 
 };
@@ -33,6 +36,7 @@ export default {
 .frame {
   background-color: rgba(0.0, 0.0, 0.0, 0.85);
   color: white;
+  height: 518px;
 }
 #close-btn {
   width: 25px;

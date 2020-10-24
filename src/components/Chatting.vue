@@ -3,16 +3,28 @@
         <Header :msg="$route.params.name"></Header>
         <div id="chat-range">
             <ul>
-                <li v-for="p in partnerMsg.msg" :key="p.idx" class="partner-frame">
-                    <img :src="require(`@/assets/profile/${$route.params.profile}`)">
-                    <div class="partner">{{ p }}</div>
+                <li class="partner-frame" v-for="p in chatMsg" :key="p.idx">
+                    <div v-if="p.id === $route.params.id">
+                        <div v-for="p_m in p.msg" :key="p_m.idx">
+                            <img :src="require(`@/assets/profile/${$route.params.profile}`)">
+                            <div class="partner">
+                                    {{ p_m }}
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
             <ul>
-                <li v-for="m in myMsg.msg" v-bind:value="m" :key="m.idx">
-                    <div class="my">{{ m }}</div><br><br>
+                <li v-for="m in chatMsg" :key="m.idx">
+                    <div class="my" v-if="m.id === 0">
+                        <div v-for="m_m in m.msg" :key="m_m.idx">
+                            <div>{{ m_m }}</div>
+                        </div>
+                    </div>
+                    <br><br>
                 </li>
             </ul>
+            
         </div>
         <Send @add_msg="addList"></Send>
     </div>
@@ -21,6 +33,7 @@
 <script>
 import Header from './Header.vue'
 import Send from './Send.vue';
+import chat from '../assets/data/chatMsg.json';
 
 export default {
     name: 'ChattingView',
@@ -28,20 +41,36 @@ export default {
         Header,
         Send
     },
-    data() {
-        return { 
-            myMsg: {
-                msg: ['안녕하세요~', '저도 만나서 반가워요!']
-            },
-            partnerMsg:{
-                msg: ['안녕하세요!', '반갑습니다!']
+    computed: {
+        chatMsg: function() {
+            var chattingMsg;
+            for(let c of chat.chatList)
+            {
+                if(this.$route.params.id === c.chatID)
+                {
+                    chattingMsg = c.totalMsg;
+                    break;
+                }
             }
-        }
+            return chattingMsg;
+        },
     },
     methods: {
         addList(msg) {
-            console.log(msg);
-            this.myMsg.msg.push(msg);
+            var index = 0;
+            for(let c of chat.chatList)
+            {
+                if(this.$route.params.id === c.chatID)
+                {
+                    break;
+                }
+                index++;
+            }
+            chat.chatList[index].totalMsg.push({
+                "id": 0,
+                "time" : "12:25",
+                "msg": [msg]
+            });
         }
     }
 }

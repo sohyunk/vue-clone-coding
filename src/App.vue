@@ -16,7 +16,7 @@ export default {
     Navbar
   },
   mounted() {
-    router.push("/");
+    router.push('/', () => {});
   }
 }
 </script>

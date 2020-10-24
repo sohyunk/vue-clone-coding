@@ -3,7 +3,7 @@
     <Header msg="친구"></Header>
     <FriendPrev v-bind="my"></FriendPrev>
     <hr>
-    <div v-for="user in users" v-bind:key="user.id">
+    <div v-for="user in userList" v-bind:key="user.id">
       <FriendPrev v-bind="user"></FriendPrev>
     </div>
   </div>
@@ -12,6 +12,7 @@
 <script>
 import Header from './Header.vue'
 import FriendPrev from './FriendPrev.vue'
+import userInfo from '../assets/data/userList.json';
 
 export default {
   name: 'Home',
@@ -20,22 +21,10 @@ export default {
     FriendPrev
   },
   data() {
+    var my = userInfo.my;
+    var userList = userInfo.users;
     return { 
-      my: {
-          name: '도넛',
-          profile: 'donut.png',
-          message: '먼치킨 찾아요'
-      },
-      users:[
-        { id: 1,
-          name: '컵케이크',
-          profile: 'cupcake.png',
-          message: '.' },
-        { id: 2,
-          name: '커피',
-          profile: 'coffee.png',
-          message: '아.아 최고' },
-      ]
+      my, userList
     }
   }
 };
