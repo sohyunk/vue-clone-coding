@@ -3,28 +3,20 @@
         <Header :msg="$route.params.name"></Header>
         <div id="chat-range">
             <ul>
-                <li class="partner-frame" v-for="p in chatMsg" :key="p.idx">
-                    <div v-if="p.id === $route.params.id">
-                        <div v-for="p_m in p.msg" :key="p_m.idx">
+                <li v-for="c in chatMsg" :key="c.idx" class="partner-frame">
+                    <div v-if="c.id === $route.params.id">
+                        <div v-for="p_m in c.msg" :key="p_m.idx">
                             <img :src="require(`@/assets/profile/${$route.params.profile}`)">
-                            <div class="partner">
-                                    {{ p_m }}
-                            </div>
+                            <div class="partner">{{ p_m }}</div>
+                        </div>
+                    </div>
+                    <div v-else>
+                        <div v-for="m_m in c.msg" :key="m_m.idx">
+                            <div class="my">{{ m_m }}</div><br><br>
                         </div>
                     </div>
                 </li>
             </ul>
-            <ul>
-                <li v-for="m in chatMsg" :key="m.idx">
-                    <div class="my" v-if="m.id === 0">
-                        <div v-for="m_m in m.msg" :key="m_m.idx">
-                            <div>{{ m_m }}</div>
-                        </div>
-                    </div>
-                    <br><br>
-                </li>
-            </ul>
-            
         </div>
         <Send @add_msg="addList"></Send>
     </div>
@@ -48,7 +40,10 @@ export default {
             {
                 if(this.$route.params.id === c.chatID)
                 {
-                    chattingMsg = c.totalMsg;
+                    console.log(c.totalMsg);
+                    chattingMsg = c.totalMsg.sort(function(a, b) {
+                        return a.time < b.time ? -1 : a.time > b.time ? 1 : 0;
+                    });
                     break;
                 }
             }
