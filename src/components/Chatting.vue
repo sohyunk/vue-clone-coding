@@ -8,11 +8,13 @@
                         <div v-for="p_m in c.msg" :key="p_m.idx">
                             <img :src="require(`@/assets/profile/${$route.params.profile}`)">
                             <div class="partner">{{ p_m }}</div>
+                            <div class="p_time"><small>{{ c.time }}</small></div>
                         </div>
                     </div>
                     <div v-else>
                         <div v-for="m_m in c.msg" :key="m_m.idx">
-                            <div class="my">{{ m_m }}</div><br><br>
+                            <div class="my">{{ m_m }}</div>
+                            <span class="m_time"><small>{{ c.time }}</small></span><br><br>
                         </div>
                     </div>
                 </li>
@@ -40,13 +42,14 @@ export default {
             {
                 if(this.$route.params.id === c.chatID)
                 {
-                    console.log(c.totalMsg);
+                    //console.log(c.totalMsg);
                     chattingMsg = c.totalMsg.sort(function(a, b) {
                         return a.time < b.time ? -1 : a.time > b.time ? 1 : 0;
                     });
                     break;
                 }
             }
+            //console.log(chattingMsg);
             return chattingMsg;
         },
     },
@@ -63,7 +66,7 @@ export default {
             }
             chat.chatList[index].totalMsg.push({
                 "id": 0,
-                "time" : "12:25",
+                "time" : "15:25",
                 "msg": [msg]
             });
         }
@@ -89,6 +92,7 @@ li {
     list-style:none;
 }
 .my {
+    position: relative;
     background-color: yellow;
     border-radius: 15px;
     padding:3px 10px;
@@ -101,11 +105,23 @@ li {
 }
 .partner {
     display: inline-block;
-    border-radius: 15px;
-    background-color: white;
-    padding:3px 10px;
     position: relative;
+    background-color: white;
+    border-radius: 15px;
+    padding:3px 10px;
     bottom: 7px;
     left: 5px;
+}
+.p_time {
+    display: inline-block;
+    position: relative;
+    left: 10px;
+    bottom: 3px;
+}
+.m_time {
+    position: relative;
+    float: right;
+    right: 6px;
+    top: 13px;
 }
 </style>

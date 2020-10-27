@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header msg="친구"></Header>
+    <Header msg="친구" @word="search"></Header>
     <FriendPrev v-bind="my"></FriendPrev>
     <hr>
     <div v-for="user in userList" v-bind:key="user.id">
@@ -25,6 +25,11 @@ export default {
     var userList = userInfo.users;
     return { 
       my, userList
+    }
+  },
+  methods: {
+    search(msg) {
+      console.log("search() input word: "+ msg);
     }
   }
 };
